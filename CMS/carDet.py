@@ -8,7 +8,7 @@ cascade_src = 'myhaar.xml'
 # video_src = 'video//drugi.mkv'
 # video_src = 'video//Trimmed.mov'
 # video_src = 'video//SpeedTest_Landscape.mov'
-video_src = '/Users/jspope/PycharmProjects/team-rad/CMS/video/SpeedTest2_Landscape.mov'
+video_src = '/Users/jspope/PycharmProjects/team-rad/CMS/video/Trimmed.mov'
 
 
 #
@@ -20,10 +20,10 @@ car_cascade = cv2.CascadeClassifier(cascade_src)
 fps = 0
 
 #defining borders of ROI
-x1 = 0
-y1 = 160
-v = 720
-hc = v - y1
+# x1 = 0
+# y1 = 160
+# v = 720
+# hc = v - y1
 
 #reading video frame by frame
 while True:
@@ -39,7 +39,7 @@ while True:
 	# img = img[y1:y1+hc, x1:x1+720]
 	# this is 160:560 (400 height) and 0:720 (720 width)
 	desired_w = 400
-	desired_h = 400
+	desired_h = 700
 	if (cap.get(3) < desired_w and cap.get(4)< desired_h):
 		img = img[0:int(cap.get(4)), 0:int(cap.get(3))]
 
