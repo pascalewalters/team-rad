@@ -5,13 +5,47 @@ import time
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
+import os
+cwd = os.getcwd()
+print (cwd)
 
 # script uses cascade classifier only for detection
-git
+#non-default
+#carCascade = cv2.CascadeClassifier('cars.xml')
 carCascade = cv2.CascadeClassifier('myhaar.xml')
-video = cv2.VideoCapture('video//Truck_stopsign.mov')
+# video = cv2.VideoCapture('video//Truck_stopsign.mov')
+#video = cv2.VideoCapture('video/Trimmed.mov')
+
+video = cv2.VideoCapture('/Users/jspope/PycharmProjects/team-rad/CMS/video/SpeedTest2_Landscape.mov')
+# video = cv2.VideoCapture('video//SpeedTest2_Landscape.MOV')
+
 lk_params = dict(winSize = (15, 15),maxLevel = 2,criteria = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 0.03))
 velocity = {}
+
+
+#define image reference frame
+
+desired_w = 400
+desired_h = 400
+if (video.get(3) < desired_w and video.get(4) < desired_h):
+	img = img[0:int(video.get(4)), 0:int(video.get(3))]
+
+elif (video.get(3) < desired_w):
+	new_h_start = int((video.get(4) - desired_h) / 2)
+	new_h_end = int(video.get(4) - new_h_start)
+	# img = img[new_h_start:new_h_end, 0:int(video.get(3))]
+
+elif (video.get(4) < desired_h):
+	new_w_start = int((video.get(3) - desired_w) / 2)
+	new_w_end = int(video.get(3) - new_w_start)
+	# img = img[0:int(video.get(4)), new_w_start:new_w_end]
+
+else:
+	new_w_start = int((video.get(3) - desired_w) / 2)
+	new_w_end = int(video.get(3) - new_w_start)
+	new_h_start = int((video.get(4) - desired_h) / 2)
+	new_h_end = int(video.get(4) - new_h_start)
+	# img = img[new_h_start:new_h_end, new_w_start:new_w_end]
 
 
 def find_distance(x1, y1, x2, y2):
@@ -107,7 +141,21 @@ def tracker():
 		# copy cropped frame
 		# add 1 to frame counter
 		# start = time.time()
-		image = image[150:600, 750:1550]
+
+		# HERE JP
+		# frame = frame[150:600, 150:950]
+		# image = image[150:600, 750:1550]
+
+		#JOSHS
+		# image = image[150:600, 150:950]
+
+
+		#PASCALES's
+		# image = image[150:600, 350:1150]
+
+		#GENERAL CASE
+		image = image[new_h_start:new_h_end, new_w_start:new_w_end]
+
 		resultImage = image.copy()
 		frameCounter = frameCounter + 1
 		
@@ -233,8 +281,13 @@ def tracker():
 				ret, frame = video.read()
 				if type(frame) == type(None):
 					break
-				#frame = frame[150:600, 150:950]
-				frame = frame[150:600, 750:1550]
+				#HERE
+				#frame = frame[150:600, 750:1550]
+				# frame = frame[150:600, 150:950]
+
+				#General case of frame
+				frame = frame[new_h_start:new_h_end, new_w_start:new_w_end]
+
 				gray2 = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 				corners2[carID], st, err = cv2.calcOpticalFlowPyrLK(gray, gray2, corners1[carID], None, **lk_params)
 				corners_center[carID] = find_center(corners2[carID])
@@ -257,11 +310,11 @@ def tracker():
 			sec = time2[i] - time1[i]
 			if old_corners_center[i] != corners_center[i] and sec >= 0.01 and sec < 0.31:
 				v = estimate_speed(old_corners_center[i], corners_center[i], sec, width1[i], width2[i], i)
-				print (v)
+				# print (v)
 				d = distance(width1[i], width2[i])
 				cv2.putText(resultImage, 'Distance: ' + str(int(d)) + ' m.', (20, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 3)
 				cv2.putText(resultImage, 'TTC: ' + str(int(timeToCollision(v, d))) + ' s.', (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 3)
-				cv2.putText(resultImage, 'Speed: ' + str(int(v)) + ' km/h.', (20, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 3)
+				cv2.putText(resultImage, 'Speed: ' + str(int(v*3.6)) + ' km/h.', (20, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 3)
 
 			old_corners_center[i] = corners_center[i]
 			time1[i] = time2[i]
