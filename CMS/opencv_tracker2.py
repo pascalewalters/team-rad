@@ -16,7 +16,7 @@ carCascade = cv2.CascadeClassifier('myhaar.xml')
 # video = cv2.VideoCapture('video//Truck_stopsign.mov')
 #video = cv2.VideoCapture('video/Trimmed.mov')
 
-video = cv2.VideoCapture('/Users/jspope/PycharmProjects/team-rad/CMS/video/SpeedTest2_Landscape.mov')
+video = cv2.VideoCapture('video//SpeedTest2_Landscape.mov')
 # video = cv2.VideoCapture('video//SpeedTest2_Landscape.MOV')
 
 lk_params = dict(winSize = (15, 15),maxLevel = 2,criteria = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 0.03))
@@ -71,9 +71,16 @@ def find_center(corners):
 	center_col = int(1.0 * x / len(corners))
 	return (center_col, center_row)
 
-def timeToCollision(v, d):
+def timeToCollision(sec,width2,width1):
     
-	ttc = (d / v)
+	# ttc = (d / v)
+	ttc = sec /(  (width1 / width2) - 1 )
+
+	# c =
+	# ttc_A =
+
+
+
 	return ttc
 
 # Speed estimation
@@ -210,7 +217,8 @@ def tracker():
 			# convert frame to grayscale
 			# try to detect new object in frame 
 			gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-			cars = carCascade.detectMultiScale(gray, 1.15, 15)
+			# cars = carCascade.detectMultiScale(gray, 1.15, 15)
+			cars = carCascade.detectMultiScale(gray, 1.25, 3)
 			# if object is detected, save it location and calculate center point of bounding box
 			for (_x, _y, _w, _h) in cars:
 				x = int(_x) + 7
@@ -313,7 +321,7 @@ def tracker():
 				# print (v)
 				d = distance(width1[i], width2[i])
 				cv2.putText(resultImage, 'Distance: ' + str(int(d)) + ' m.', (20, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 3)
-				cv2.putText(resultImage, 'TTC: ' + str(int(timeToCollision(v, d))) + ' s.', (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 3)
+				cv2.putText(resultImage, 'TTC: ' + str(int(timeToCollision(sec,width1,width2))) + ' s.', (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 3)
 				cv2.putText(resultImage, 'Speed: ' + str(int(v*3.6)) + ' km/h.', (20, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 3)
 
 			old_corners_center[i] = corners_center[i]
