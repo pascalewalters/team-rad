@@ -10,15 +10,14 @@ import numpy as np
 from crop_video import crop
 
 carCascade = cv2.CascadeClassifier('myhaar.xml')
-video = cv2.VideoCapture('video//SpeedTest2_Landscape.MOV')
+# video = cv2.VideoCapture('video//Trimmed.MOV')
 # video = cv2.VideoCapture('video//prvi.mkv')
 # video = cv2.VideoCapture('video//Sedan_downhill.MOV')
-# video = cv2.VideoCapture('video//Truck_stopsign.MOV')
+video = cv2.VideoCapture('video//Truck_stopsign.MOV')
 # video = cv2.VideoCapture('video/Trimmed.mov')
 
-desired_w = 1000
-desired_h = 350
-
+desired_w = 800
+desired_h = 800
 
 # out = cv2.VideoWriter('output.avi', -1, 20.0, (desired_w, desired_h))
 
@@ -50,7 +49,7 @@ def acceleration_ttc(tm1, tm2, time, C):
 def read_video():
     frameRate = video.get(5)
     red = (0, 0, 255)
-    blue = (255, 0, 0)
+    # blue = (255, 0, 0)
     green = (0, 255, 0)
 
     currentCarID = 0
@@ -66,7 +65,7 @@ def read_video():
 
     new_w_start, new_w_end, new_h_start, new_h_end = crop(video, desired_w, desired_h)
 
-    tmp = 15
+    tmp = 5
     frameCounter = 0
     # read video
     while True:
@@ -89,7 +88,7 @@ def read_video():
                 y_obj = int(_y)
                 w_obj = int(_w)
                 h_obj = int(_h)
-                # cv2.rectangle(cropped, (x_obj, y_obj), (x_obj + w_obj, y_obj + h_obj), green, 2)
+                cv2.rectangle(cropped, (x_obj, y_obj), (x_obj + w_obj, y_obj + h_obj), green, 2)
                 # print("detected car {}".format((_x, _y, _w, _h)))
 
                 delta_x_obj = x_obj + 0.5 * w_obj
@@ -129,8 +128,11 @@ def read_video():
                         time1[currentCarID] = frameCounter / frameRate
                         currentCarID = currentCarID + 1
 
+                        cv2.rectangle(cropped, (bbox[0], bbox[1]), (bbox[0] + bbox[2], bbox[1] + bbox[3]), red, 2)
+
+
                 # print("Added tracker {}".format(bbox))
-                # cv2.rectangle(cropped, (bbox[0], bbox[1]), (bbox[0] + bbox[2], bbox[1] + bbox[3]), red, 2)
+                cv2.rectangle(cropped, (bbox[0], bbox[1]), (bbox[0] + bbox[2], bbox[1] + bbox[3]), red, 2)
 
         if (frameCounter % 15 == 0):
             for tracked_id in carTracker:
@@ -161,9 +163,11 @@ def read_video():
                             # print(t_m1[tracked_id])
                             t_a = acceleration_ttc(t_m1[tracked_id], t_m2[tracked_id], delta_t, C)
                             # print("at frame {f} calculates t_a = {t}".format(f=frameCounter, t=t_a))
-                            print(t_m2[tracked_id])
-                            print(t_a)
-                            print(frameCounter)
+                            if(t_a >0 ):
+                                print("Car ID is: {track}, the following is t_m, t_a and current frame".format(track=tracked_id))
+                                print(t_m2[tracked_id])
+                                print(t_a)
+                                print(frameCounter)
                             # print("at frame {f} calculates t_m = {t}".format(f=frameCounter, t=t_m2[tracked_id]))
 
                         else:
