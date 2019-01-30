@@ -13,12 +13,11 @@ carCascade = cv2.CascadeClassifier('myhaar.xml')
 # video = cv2.VideoCapture('video//Trimmed.MOV')
 # video = cv2.VideoCapture('video//prvi.mkv')
 # video = cv2.VideoCapture('video//Sedan_downhill.MOV')
-video = cv2.VideoCapture('video//Truck_stopsign.MOV')
-# video = cv2.VideoCapture('video/Trimmed.mov')
+# video = cv2.VideoCapture('video//Truck_stopsign.MOV')
+video = cv2.VideoCapture('video/SpeedTest2_Landscape.mov')
 
-desired_w = 800
-desired_h = 800
-
+desired_w = 450
+desired_h = 400
 # out = cv2.VideoWriter('output.avi', -1, 20.0, (desired_w, desired_h))
 
 # calculate momentary time to collision
@@ -47,6 +46,7 @@ def acceleration_ttc(tm1, tm2, time, C):
 # def tracker():
 
 def read_video():
+    t_a = 0
     frameRate = video.get(5)
     red = (0, 0, 255)
     # blue = (255, 0, 0)
@@ -75,7 +75,9 @@ def read_video():
 
         # crop image
         cropped = image[new_h_start:new_h_end, new_w_start:new_w_end]
-
+        if(t_a):
+            cv2.putText(cropped, 'TTC: ' + str(int(t_a)) + ' s.', (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.75,
+                        (0, 0, 255), 3)
         # convert to grey scale image
         grey = cv2.cvtColor(cropped, cv2.COLOR_BGR2GRAY)
 
@@ -128,17 +130,18 @@ def read_video():
                         time1[currentCarID] = frameCounter / frameRate
                         currentCarID = currentCarID + 1
 
-                        cv2.rectangle(cropped, (bbox[0], bbox[1]), (bbox[0] + bbox[2], bbox[1] + bbox[3]), red, 2)
+                        # cv2.rectangle(cropped, (bbox[0], bbox[1]), (bbox[0] + bbox[2], bbox[1] + bbox[3]), red, 2)
 
 
                 # print("Added tracker {}".format(bbox))
-                cv2.rectangle(cropped, (bbox[0], bbox[1]), (bbox[0] + bbox[2], bbox[1] + bbox[3]), red, 2)
+                # cv2.rectangle(cropped, (bbox[0], bbox[1]), (bbox[0] + bbox[2], bbox[1] + bbox[3]), red, 2)
 
         if (frameCounter % 15 == 0):
             for tracked_id in carTracker:
                 trackedPosition = carTracker[tracked_id].update(cropped)
-
                 x_t, y_t, w_t, h_t = trackedPosition[1]
+
+                cv2.rectangle(cropped, (int(x_t), int(y_t)), (int(x_t + w_t), int(y_t + h_t)), red, 2)
 
                 width2[tracked_id] = w_t
                 # time2[tracked_id] = time.time()

@@ -1,8 +1,8 @@
 % read in video
-path_in = '../New/video/SpeedTest2_Landscape.MOV';
+path_in = '../New/video/Trimmed.MOV';
 video = VideoReader(path_in);
 
-path_out = 'SpeedTest2_Landscape-crop_1000_350.avi';
+path_out = 'Trimmed_350_1000.avi';
 
 % to play video
 % implay('../New/video/SpeedTest2_Landscape.MOV')
@@ -10,8 +10,8 @@ path_out = 'SpeedTest2_Landscape-crop_1000_350.avi';
 
 % video cropper
 
-desired_w = 1000;
-desired_h = 350;
+desired_w = 800;
+desired_h = 800;
 
 new_w_start = (video.width - desired_w) / 2;
 new_h_start = (video.height - desired_h) / 2;
