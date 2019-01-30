@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0d6f47cd-8818-4e39-8089-15c640b5af5f" name="Default Changelist" comment="updates to opencv_tracker 2 adn carDet.py to adjust frame to desired width and height (scale all sides of an image evenly) - couple edits">
+      <change afterPath="$PROJECT_DIR$/CMS/MATALB DEV/Bike Detection/Horn and Schunck Optical Flow Method for a video file/Flow.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/MATALB DEV/Bike Detection/Horn and Schunck Optical Flow Method for a video file/Opticalflow.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/MATALB DEV/Bike Detection/detect_vehicles.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/MATALB DEV/Bike Detection/tutorialOpticalFlowPart1_v1.053_release.mltbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/custom.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/custom_JP.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/custom_JP_edits_brk.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/custom_export.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/custom_nov22.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/custom_nov22_430pm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/old_custom.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/10_Portrait.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/10m_Landscape.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/15m_Landscape.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/15m_Portrait.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/20m_Landscape.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/20m_Portrait.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/25m_Landscape.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/25m_Portrait.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/30m_Landscape.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/30m_Portrait.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/35m_Landscape.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/35m_Portrait.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/5m_Landscape.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/5m_Portrait.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/Setup/Experimental_Setup.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/Setup/Experimental_Setup_Seat.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/SpeedTest2_Landscape.MOV" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/SpeedTest2_Portrait.MOV" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/SpeedTest_Landscape.mov" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/SpeedTest_Portrait.MOV" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMS/MATALB DEV/read_vid.m" beforeDir="false" afterPath="$PROJECT_DIR$/CMS/MATALB DEV/read_vid.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMS/New/crop_video.py" beforeDir="false" afterPath="$PROJECT_DIR$/CMS/New/crop_video.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMS/New/custom_acc.py" beforeDir="false" afterPath="$PROJECT_DIR$/CMS/New/custom_acc.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="12066680">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="11" />
+          <entry key="project.open.time.0" value="3" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.12" value="3" />
+          <entry key="project.open.time.13" value="1" />
+          <entry key="project.open.time.18" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.30" value="1" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="13" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages">
+        <counts>
+          <entry key="git.branch.create.new" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="JPG" value="1" />
+          <entry key="iml" value="1" />
+          <entry key="md" value="1" />
+          <entry key="py" value="36" />
+          <entry key="xml" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="IDEA_MODULE" value="1" />
+          <entry key="Image" value="1" />
+          <entry key="Markdown" value="1" />
+          <entry key="Python" value="35" />
+          <entry key="Scratch" value="1" />
+          <entry key="XML" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="2412" />
+          <entry key="txt" value="388" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PLAIN_TEXT" value="388" />
+          <entry key="Python" value="2412" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMS/New/custom.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2085">
+              <caret line="148" column="18" selection-start-line="148" selection-start-column="16" selection-end-line="148" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CMS/New/custom_acc.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMS/New/crop_video.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" selection-start-line="20" selection-end-line="23" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>t_x</find>
+      <find>400</find>
+      <find>img</find>
+      <find>video</find>
+      <find>cap</find>
+      <find>distanceToObject</find>
+      <find>distance</find>
+      <find>estimate_speed</find>
+      <find>frame</find>
+      <find>image</find>
+      <find>timetocollision</find>
+      <find>time</find>
+      <find>detect</find>
+      <find>timeToCollision</find>
+      <find>lk_params</find>
+      <find>resultImage</find>
+      <find>detectmult</find>
+      <find>framecounter</find>
+      <find>tracker</find>
+      <find>(</find>
+      <find>print</find>
+      <find>green</find>
+      <find>width</find>
+      <find>carTracker</find>
+      <find>cropped</find>
+      <find>red</find>
+      <find>1000</find>
+      <find>crop_video</find>
+      <find>crop</find>
+      <find>if</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>video</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_COMMON_BRANCH" value="master" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/CMS/carDet.py" />
+        <option value="$PROJECT_DIR$/CMS/custom_JP.py" />
+        <option value="$PROJECT_DIR$/CMS/opencv_tracker2.py" />
+        <option value="$PROJECT_DIR$/CMS/New/crop_video.py" />
+        <option value="$PROJECT_DIR$/CMS/New/custom.py" />
+        <option value="$PROJECT_DIR$/CMS/custom_acc.py" />
+        <option value="$PROJECT_DIR$/CMS/New/custom_acc.py" />
+        <option value="$PROJECT_DIR$/CMS/New/old_custom.py" />
+        <option value="$PROJECT_DIR$/CMS/New/custom_export.py" />
+        <option value="$PROJECT_DIR$/CMS/New/custom_nov22.py" />
+        <option value="$PROJECT_DIR$/CMS/New/custom_nov22_430pm.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="42" />
+    <option name="y" value="23" />
+    <option name="width" value="1638" />
+    <option name="height" value="1027" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="team-rad" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team-rad" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="team-rad" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team-rad" type="462c0819:PsiDirectoryNode" />
+              <item name="CMS" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="team-rad" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team-rad" type="462c0819:PsiDirectoryNode" />
+              <item name="CMS" type="462c0819:PsiDirectoryNode" />
+              <item name="New" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="team-rad" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team-rad" type="462c0819:PsiDirectoryNode" />
+              <item name="CMS" type="462c0819:PsiDirectoryNode" />
+              <item name="New" type="462c0819:PsiDirectoryNode" />
+              <item name="video" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/CMS/New" />
+      <recent name="$PROJECT_DIR$/CMS/New/video" />
+      <recent name="$PROJECT_DIR$/CMS" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.custom_nov22_430pm">
+    <configuration name="custom" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="CMS" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CMS/New" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CMS/New/custom.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="custom_acc" type="PythonConfigurationType" factoryName="Python">
+      <module name="CMS" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CMS/New" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CMS/New/custom_acc.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="custom_export" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="CMS" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CMS/New" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CMS/New/custom_export.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="custom_nov22" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="CMS" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CMS/New" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CMS/New/custom_nov22.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="custom_nov22_430pm" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="CMS" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CMS/New" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CMS/New/custom_nov22_430pm.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="old_custom" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="CMS" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CMS/New" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CMS/New/old_custom.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.custom_acc" />
+      <item itemvalue="Python.custom" />
+      <item itemvalue="Python.old_custom" />
+      <item itemvalue="Python.custom_export" />
+      <item itemvalue="Python.custom_nov22" />
+      <item itemvalue="Python.custom_nov22_430pm" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.custom_nov22_430pm" />
+        <item itemvalue="Python.custom_nov22" />
+        <item itemvalue="Python.custom_export" />
+        <item itemvalue="Python.old_custom" />
+        <item itemvalue="Python.custom" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0d6f47cd-8818-4e39-8089-15c640b5af5f" name="Default Changelist" comment="" />
+      <created>1540235278893</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1540235278893</updated>
+    </task>
+    <task id="LOCAL-00001" summary="updates to opencv_tracker 2 adn carDet.py to adjust frame to desired width and height (scale all sides of an image evenly)">
+      <created>1541463717964</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1541463717964</updated>
+    </task>
+    <task id="LOCAL-00002" summary="updates to opencv_tracker 2 adn carDet.py to adjust frame to desired width and height (scale all sides of an image evenly) - couple edits">
+      <created>1541464201716</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1541464201716</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update to custom_acc.py and working matlab file - see FB group for excel for validation">
+      <created>1542160425869</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1542160425869</updated>
+    </task>
+    <task id="LOCAL-00004" summary="editted the script to ensure the boxes drawn are now visible in the wild">
+      <created>1542694890451</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1542694890451</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="42" y="23" width="1638" height="1027" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14718615" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.77805483" weight="0.25561497" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49625936" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49969232" weight="0.32941177" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32941177" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4895449" weight="0.27058825" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.22194514" side_tool="true" visible="true" weight="0.25561497" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49846154" weight="0.32941177" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/team-rad" />
+    </ignored-roots>
+    <MESSAGE value="updates to opencv_tracker 2 adn carDet.py to adjust frame to desired width and height (scale all sides of an image evenly)" />
+    <MESSAGE value="updates to opencv_tracker 2 adn carDet.py to adjust frame to desired width and height (scale all sides of an image evenly) - couple edits" />
+    <MESSAGE value="update to custom_acc.py and working matlab file - see FB group for excel for validation" />
+    <MESSAGE value="editted the script to ensure the boxes drawn are now visible in the wild" />
+    <option name="LAST_COMMIT_MESSAGE" value="editted the script to ensure the boxes drawn are now visible in the wild" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CMS/.idea/CMS.iml" />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.2/python_stubs/-1199943126/cv2/cv2/CascadeClassifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="150" column="8" selection-start-line="150" selection-start-column="8" selection-end-line="150" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/15m_Landscape.JPG">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/New/myhaar.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/carDet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/opencv_tracker2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4845">
+          <caret line="323" column="17" selection-start-line="323" selection-end-line="324" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/New/custom_JP.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/New/custom_JP_edits_brk.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="82" column="29" selection-start-line="82" selection-start-column="20" selection-end-line="82" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/New/custom_export.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/New/old_custom.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2216">
+          <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/New/custom_nov22.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="177" selection-start-line="177" selection-end-line="177" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/New/custom_nov22_430pm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/New/custom.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2085">
+          <caret line="148" column="18" selection-start-line="148" selection-start-column="16" selection-end-line="148" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/New/crop_video.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" selection-start-line="20" selection-end-line="23" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/New/custom_acc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
