@@ -2,40 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d6f47cd-8818-4e39-8089-15c640b5af5f" name="Default Changelist" comment="updates to opencv_tracker 2 adn carDet.py to adjust frame to desired width and height (scale all sides of an image evenly) - couple edits">
-      <change afterPath="$PROJECT_DIR$/CMS/MATALB DEV/Bike Detection/Horn and Schunck Optical Flow Method for a video file/Flow.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/MATALB DEV/Bike Detection/Horn and Schunck Optical Flow Method for a video file/Opticalflow.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/MATALB DEV/Bike Detection/detect_vehicles.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/MATALB DEV/Bike Detection/tutorialOpticalFlowPart1_v1.053_release.mltbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/custom.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/custom_JP.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/custom_JP_edits_brk.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/custom_export.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/custom_nov22.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/custom_nov22_430pm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/old_custom.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/10_Portrait.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/10m_Landscape.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/15m_Landscape.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/15m_Portrait.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/20m_Landscape.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/20m_Portrait.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/25m_Landscape.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/25m_Portrait.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/30m_Landscape.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/30m_Portrait.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/35m_Landscape.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/35m_Portrait.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/5m_Landscape.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/5m_Portrait.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/Setup/Experimental_Setup.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/Setup/Experimental_Setup_Seat.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/SpeedTest2_Landscape.MOV" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/SpeedTest2_Portrait.MOV" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/SpeedTest_Landscape.mov" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMS/New/video/iPhone SE_ Rear Facing Camera [28-Oct-2018]/SpeedTest_Portrait.MOV" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMS/MATALB DEV/read_vid.m" beforeDir="false" afterPath="$PROJECT_DIR$/CMS/MATALB DEV/read_vid.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMS/New/crop_video.py" beforeDir="false" afterPath="$PROJECT_DIR$/CMS/New/crop_video.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMS/New/custom_acc.py" beforeDir="false" afterPath="$PROJECT_DIR$/CMS/New/custom_acc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MultiobjectTracker/ObjectTracker.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/MultiobjectTracker/ObjectTracker.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MultiobjectTracker/ObjectTracker.xcodeproj/project.xcworkspace/xcuserdata/jspope.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/MultiobjectTracker/ObjectTracker.xcodeproj/project.xcworkspace/xcuserdata/jspope.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MultiobjectTracker/ObjectTracker/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/MultiobjectTracker/ObjectTracker/Info.plist" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +16,7 @@
     <session id="12066680">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
+          <entry key="project.closed" value="12" />
           <entry key="project.open.time.0" value="3" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="1" />
@@ -56,8 +25,8 @@
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.30" value="1" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="13" />
+          <entry key="project.open.time.8" value="2" />
+          <entry key="project.opened" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -99,41 +68,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMS/New/custom.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2085">
-              <caret line="148" column="18" selection-start-line="148" selection-start-column="16" selection-end-line="148" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#16#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/CMS/New/custom_acc.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
-              <folding>
-                <element signature="e#0#16#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMS/New/crop_video.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" selection-start-line="20" selection-end-line="23" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -213,6 +148,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -229,20 +165,18 @@
               <item name="team-rad" type="b2602c69:ProjectViewProjectNode" />
               <item name="team-rad" type="462c0819:PsiDirectoryNode" />
               <item name="CMS" type="462c0819:PsiDirectoryNode" />
-              <item name="New" type="462c0819:PsiDirectoryNode" />
+              <item name="MATALB DEV" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="team-rad" type="b2602c69:ProjectViewProjectNode" />
               <item name="team-rad" type="462c0819:PsiDirectoryNode" />
               <item name="CMS" type="462c0819:PsiDirectoryNode" />
               <item name="New" type="462c0819:PsiDirectoryNode" />
-              <item name="video" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -468,7 +402,7 @@
   <component name="ToolWindowManager">
     <frame x="42" y="23" width="1638" height="1027" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14718615" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.14718615" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -601,7 +535,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CMS/New/custom_acc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
+        <state relative-caret-position="30">
           <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
