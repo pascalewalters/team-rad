@@ -14,6 +14,10 @@
 		503D3A421EE9AE7B009EB3BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 503D3A401EE9AE7B009EB3BB /* LaunchScreen.storyboard */; };
 		5052171B1EEB15F7007F5524 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 505217191EEB15F6007F5524 /* README.md */; };
 		5052171C1EEB15F7007F5524 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5052171A1EEB15F6007F5524 /* LICENSE */; };
+		FBFD783D21FBCE0D00C445C7 /* YOLO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFD783C21FBCE0D00C445C7 /* YOLO.swift */; };
+		FBFD783F21FBCE3000C445C7 /* BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFD783E21FBCE3000C445C7 /* BoundingBox.swift */; };
+		FBFD784121FBD25500C445C7 /* TinyYOLO.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FBFD784021FBD25500C445C7 /* TinyYOLO.mlmodel */; };
+		FBFD784321FBD28F00C445C7 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFD784221FBD28F00C445C7 /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		503D3A431EE9AE7B009EB3BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		505217191EEB15F6007F5524 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		5052171A1EEB15F6007F5524 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		FBFD783C21FBCE0D00C445C7 /* YOLO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOLO.swift; sourceTree = "<group>"; };
+		FBFD783E21FBCE3000C445C7 /* BoundingBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBox.swift; sourceTree = "<group>"; };
+		FBFD784021FBD25500C445C7 /* TinyYOLO.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = TinyYOLO.mlmodel; sourceTree = "<group>"; };
+		FBFD784221FBD28F00C445C7 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,11 +68,15 @@
 		503D3A361EE9AE7B009EB3BB /* ObjectTracker */ = {
 			isa = PBXGroup;
 			children = (
+				FBFD784221FBD28F00C445C7 /* Helpers.swift */,
 				503D3A371EE9AE7B009EB3BB /* AppDelegate.swift */,
 				503D3A391EE9AE7B009EB3BB /* ViewController.swift */,
+				FBFD783C21FBCE0D00C445C7 /* YOLO.swift */,
+				FBFD783E21FBCE3000C445C7 /* BoundingBox.swift */,
 				503D3A3B1EE9AE7B009EB3BB /* Main.storyboard */,
 				503D3A3E1EE9AE7B009EB3BB /* Assets.xcassets */,
 				503D3A401EE9AE7B009EB3BB /* LaunchScreen.storyboard */,
+				FBFD784021FBD25500C445C7 /* TinyYOLO.mlmodel */,
 				503D3A431EE9AE7B009EB3BB /* Info.plist */,
 			);
 			path = ObjectTracker;
@@ -142,7 +154,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBFD783F21FBCE3000C445C7 /* BoundingBox.swift in Sources */,
+				FBFD784321FBD28F00C445C7 /* Helpers.swift in Sources */,
+				FBFD783D21FBCE0D00C445C7 /* YOLO.swift in Sources */,
 				5052171B1EEB15F7007F5524 /* README.md in Sources */,
+				FBFD784121FBD25500C445C7 /* TinyYOLO.mlmodel in Sources */,
 				503D3A3A1EE9AE7B009EB3BB /* ViewController.swift in Sources */,
 				503D3A381EE9AE7B009EB3BB /* AppDelegate.swift in Sources */,
 			);
@@ -282,7 +298,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ObjectTracker.122;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -296,7 +312,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ObjectTracker.122;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
