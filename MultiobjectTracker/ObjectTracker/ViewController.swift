@@ -33,6 +33,13 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     private var lastObservation: [UUID: VNDetectedObjectObservation] = [:]
     private var trackingRequests: [VNTrackObjectRequest] = []
     
+    private var width1: [UUID: CGFloat] = [:]
+    private var time1: [UUID: CFTimeInterval] = [:]
+    private var width2: [UUID: CGFloat] = [:]
+    private var time2: [UUID: CFTimeInterval] = [:]
+    private var t_m1: [UUID: Double] = [:]
+    private var t_m2: [UUID: Double] = [:]
+    
     let yolo = YOLO()
     
     // How many predictions we can do concurrently.
@@ -160,7 +167,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             if i < predictions.count {
                 let prediction = predictions[i]
                 print(labels[prediction.classIndex])
-                print(prediction.rect)
 //                if labels[prediction.classIndex] != "bicycle" && labels[prediction.classIndex] != "bus" && labels[prediction.classIndex] != "car" && labels[prediction.classIndex] != "motorbike" { continue }
                 
                 // The predicted bounding box is in the coordinate space of the input
@@ -182,17 +188,90 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 rect.size.width *= scaleX
                 rect.size.height *= scaleY
                 
-                print(rect)
-                
-                // rect is in preview layer coords
+                var matchCarID: UUID? = nil
                 
                 var convertedRect = self.cameraLayer.metadataOutputRectConverted(fromLayerRect: rect)
                 convertedRect.origin.y = 1 - convertedRect.origin.y
                 
-                let newObservation = VNDetectedObjectObservation(boundingBox: convertedRect)
-                lastObservation[newObservation.uuid] = newObservation
+                let delta_x_obj = convertedRect.origin.x + 0.5 * convertedRect.size.width
+                let delta_y_obj = convertedRect.origin.y + 0.5 * convertedRect.size.height
                 
-                print(newObservation.boundingBox)
+                for (tracked_id, observation) in lastObservation {
+                    let bb = observation.boundingBox
+                    
+                    let delta_x_t = bb.origin.x + 0.5 * bb.size.width
+                    let delta_y_t = bb.origin.y + 0.5 * bb.size.height
+                    
+                    if (bb.origin.x <= delta_x_obj &&
+                        delta_x_obj <= (bb.origin.x + bb.size.width) &&
+                        bb.origin.y <= delta_y_obj &&
+                        delta_y_obj <= (bb.origin.y + bb.size.height) &&
+                        convertedRect.origin.x <= delta_x_t &&
+                        delta_x_t <= (convertedRect.origin.x + convertedRect.size.width) &&
+                        convertedRect.origin.y <= delta_y_t &&
+                        delta_y_t <= (convertedRect.origin.y + convertedRect.size.height)) {
+                        // Matching object already exists
+                        matchCarID = tracked_id
+                    }
+                }
+                
+                // TODO: delete objects that leave
+                // TODO: handle for too many tracking objects
+                
+                if matchCarID == nil {
+                    // TODO: implement desired width and height?
+//                    if (rect.origin.x + rect.size.width < desired_w / 2) &&
+//                        (rect.origin.y < (desired_h / 4)) {
+                    
+                    // Create tracking object
+                    let newObservation = VNDetectedObjectObservation(boundingBox: convertedRect)
+                    lastObservation[newObservation.uuid] = newObservation
+                    
+                    // Index widths and times
+                    width1[newObservation.uuid] = convertedRect.size.width
+                    time1[newObservation.uuid] = CACurrentMediaTime()
+//                    }
+                }
+                
+                for (tracked_id, observation) in lastObservation {
+                    let bb = observation.boundingBox
+
+                    width2[tracked_id] = bb.size.width
+                    time2[tracked_id] = CACurrentMediaTime()
+                    
+                    guard let t1 = time1[tracked_id] else { return }
+                    guard let t2 = time2[tracked_id] else { return }
+                    let delta_t = t2 - t1
+                    
+                    if width1[tracked_id] != width2[tracked_id] && width1[tracked_id] != 0 {
+                        guard let w1 = width1[tracked_id] else { return }
+                        guard let w2 = width2[tracked_id] else { return }
+                        let t = momentary_ttc(w1: w1, w2: w2, time: delta_t)
+                        t_m2[tracked_id] = t
+
+                        if t_m1[tracked_id] != nil && t_m2[tracked_id] != nil {
+                            guard let tm1 = t_m1[tracked_id] else { return }
+                            guard let tm2 = t_m2[tracked_id] else { return }
+                            let C = ((tm2 - tm1) / delta_t) + 1.0
+//
+                            if C < 0 {
+                                let t_a = acceleration_ttc(tm1: tm1, tm2: tm2, time: delta_t, C: C)
+                                if t_a > 0 {
+////                                    print("Car ID is: {track}, the following is t_m, t_a and current frame".format(track=tracked_id))
+//                                    print(t_m2[tracked_id])
+                                    print(t_a)
+                                }
+                            }
+                        }
+                        
+                        // Update values
+                        width1[tracked_id] = width2[tracked_id]
+                        time1[tracked_id] = time2[tracked_id]
+                        if t_m2[tracked_id] != nil {
+                            t_m1[tracked_id] = t_m2[tracked_id]
+                        }
+                    }
+                }
                 
                 // Show the bounding box.
                 let label = String(format: "%@ %.1f", labels[prediction.classIndex], prediction.score * 100)
