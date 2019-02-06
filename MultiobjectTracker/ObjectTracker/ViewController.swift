@@ -15,7 +15,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     @IBOutlet private weak var cameraView: UIView?
     
-    private let visionSequenceHandler = VNSequenceRequestHandler()
+    private var visionSequenceHandler = VNSequenceRequestHandler()
     private lazy var cameraLayer: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
     private lazy var captureSession: AVCaptureSession = {
         let session = AVCaptureSession()
@@ -196,7 +196,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 let delta_x_obj = convertedRect.origin.x + 0.5 * convertedRect.size.width
                 let delta_y_obj = convertedRect.origin.y + 0.5 * convertedRect.size.height
                 
-                for (tracked_id, observation) in lastObservation {
+                for (tracked_id, observation) in self.lastObservation {
                     let bb = observation.boundingBox
                     
                     let delta_x_t = bb.origin.x + 0.5 * bb.size.width
@@ -225,7 +225,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                     
                     // Create tracking object
                     let newObservation = VNDetectedObjectObservation(boundingBox: convertedRect)
-                    lastObservation[newObservation.uuid] = newObservation
+                    self.lastObservation[newObservation.uuid] = newObservation
                     
                     // Index widths and times
                     width1[newObservation.uuid] = convertedRect.size.width
@@ -233,7 +233,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
 //                    }
                 }
                 
-                for (tracked_id, observation) in lastObservation {
+                for (tracked_id, observation) in self.lastObservation {
                     let bb = observation.boundingBox
 
                     width2[tracked_id] = bb.size.width
@@ -317,21 +317,35 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         else { return }
         
         self.trackingRequests = [VNTrackObjectRequest]()
-        for (_, observation) in lastObservation {
+        for (_, observation) in self.lastObservation {
             // create the request
             let request = VNTrackObjectRequest(detectedObjectObservation: observation, completionHandler: self.handleVisionRequestUpdate)
             // set the accuracy to high
             // this is slower, but it works a lot better
             request.trackingLevel = .accurate
             trackingRequests.append(request)
+            
         }
         
         // perform the request
+        self.visionSequenceHandler = VNSequenceRequestHandler()
         do {
             try self.visionSequenceHandler.perform(trackingRequests, on: pixelBuffer)
         } catch {
-            print("Throws: \(error)")
+            print("Throws: \(error.localizedDescription)")
         }
+        
+        // Attempt to handle the error (doesn't work)
+//        do {
+//            try self.visionSequenceHandler.perform(trackingRequests, on: pixelBuffer)
+//        } catch {
+//            do {
+//                self.visionSequenceHandler = VNSequenceRequestHandler()
+//                try self.visionSequenceHandler.perform(trackingRequests, on: pixelBuffer)
+//            } catch {
+//                print("Throws: \(error.localizedDescription)")
+//            }
+//        }
         
         // The semaphore will block the capture queue and drop frames when
         // Core ML can't keep up with the camera.
@@ -405,7 +419,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     @IBAction private func resetTapped(_ sender: UIBarButtonItem) {
         self.lastObservation = [:]
-        highlightViews.forEach({ $0.value.removeFromSuperview() })
+//        highlightViews.forEach({ $0.value.removeFromSuperview() })
+        print("reset")
     }
     
     private func createHighlightSquare() -> UIView {
