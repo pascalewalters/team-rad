@@ -110,6 +110,11 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         // make the camera appear on the screen
         self.cameraView?.layer.addSublayer(self.cameraLayer)
         
+        // Add the bounding box layers to the UI, on top of the video preview.
+        for box in self.boundingBoxes {
+            box.addToLayer(self.cameraLayer)
+        }
+        
         // register to receive buffers from the camera
         let videoOutput = AVCaptureVideoDataOutput()
         videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "MyQueue"))
@@ -117,6 +122,11 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         
         // begin the session
         self.captureSession.startRunning()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        print(#function)
     }
     
     func visionRequestDidComplete(request: VNRequest, error: Error?) {
@@ -324,9 +334,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             // this is slower, but it works a lot better
             request.trackingLevel = .accurate
             trackingRequests.append(request)
-            
+
         }
-        
+
         // perform the request
         self.visionSequenceHandler = VNSequenceRequestHandler()
         do {
