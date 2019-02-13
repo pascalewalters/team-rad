@@ -249,8 +249,6 @@ class ViewController: UIViewController {
 
         let delta_x_obj = convertedRect.origin.x + 0.5 * convertedRect.size.width
         let delta_y_obj = convertedRect.origin.y + 0.5 * convertedRect.size.height
-        
-        print(self.lastObservation.count)
 
         for (tracked_id, observation) in self.lastObservation {
             let bb = observation.boundingBox
@@ -272,7 +270,6 @@ class ViewController: UIViewController {
         }
         
         // TODO: delete objects that leave
-        // TODO: handle for too many tracking objects
 
         if matchCarID == nil {
             // TODO: implement desired width and height?
@@ -289,21 +286,18 @@ class ViewController: UIViewController {
             //                    }
         }
         
-        for (tracked_id, observation) in self.lastObservation {
-            let bb = observation.boundingBox
+        var t_a = 0.0
+        
+        for (tracked_id, _) in self.lastObservation {
             
-            width2[tracked_id] = bb.size.width
+            width2[tracked_id] = convertedRect.size.width
             time2[tracked_id] = CACurrentMediaTime()
             
             guard let t1 = time1[tracked_id] else { return }
             guard let t2 = time2[tracked_id] else { return }
             let delta_t = t2 - t1
             
-            print(width1[tracked_id])
-            print(width2[tracked_id])
-            
             if width1[tracked_id] != width2[tracked_id] && width1[tracked_id] != 0 {
-                print("here")
                 guard let w1 = width1[tracked_id] else { return }
                 guard let w2 = width2[tracked_id] else { return }
                 let t = momentary_ttc(w1: w1, w2: w2, time: delta_t)
@@ -314,7 +308,7 @@ class ViewController: UIViewController {
                     guard let tm2 = t_m2[tracked_id] else { return }
                     let C = ((tm2 - tm1) / delta_t) + 1.0
                     if C < 0 {
-                        let t_a = acceleration_ttc(tm1: tm1, tm2: tm2, time: delta_t, C: C)
+                        t_a = acceleration_ttc(tm1: tm1, tm2: tm2, time: delta_t, C: C)
                         if t_a > 0 {
                             print(t_a)
                         }
@@ -331,7 +325,8 @@ class ViewController: UIViewController {
         }
 
         // Show the bounding box.
-        let label = String(format: "%@ %.1f", labels[prediction.classIndex], prediction.score * 100)
+//        let label = String(format: "%@ %.1f", labels[prediction.classIndex], prediction.score * 100)
+        let label = String(format: "%@ %.5f", labels[prediction.classIndex], t_a)
         let color = colors[prediction.classIndex]
         boundingBoxes[i].show(frame: rect, label: label, color: color)
       } else {
@@ -344,8 +339,6 @@ class ViewController: UIViewController {
 
 extension ViewController: VideoCaptureDelegate {
   func videoCapture(_ capture: VideoCapture, didCaptureVideoFrame pixelBuffer: CVPixelBuffer?, timestamp: CMTime) {
-    // For debugging.
-    //predict(image: UIImage(named: "dog416")!); return
     
 //    // make sure the pixel buffer can be converted
 //    guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
@@ -407,6 +400,7 @@ extension ViewController: VideoCaptureDelegate {
 //                    view.removeFromSuperview()
 //                    self.highlightViews.removeValue(forKey: observation.uuid)
 //                }
+                self.lastObservation.removeValue(forKey: observation.uuid)
                 return
             }
             
