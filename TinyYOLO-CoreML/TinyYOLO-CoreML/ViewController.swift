@@ -44,6 +44,12 @@ class ViewController: UIViewController {
   private var time2: [UUID: CFTimeInterval] = [:]
   private var t_m1: [UUID: Double] = [:]
   private var t_m2: [UUID: Double] = [:]
+//  private var t_a = 0.0
+//   private var t_a = [UUID: Double] = [:]
+    private var t_a: [UUID: Double] = [:]
+    
+  private var previous1: [UUID: [CGFloat]] = [:]
+  private var previous2: [UUID: [CGFloat]] = [:]
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -215,6 +221,52 @@ class ViewController: UIViewController {
     }
     return currentFPSDelivered
   }
+    
+    func calculateTTC(convertedRect: CGRect, tracked_id: UUID) {
+        // Calculate TTC for each car that is being tracked
+//        for (tracked_id, _) in self.lastObservation {
+        
+        // Get average of previous 5-10 frames
+        width2[tracked_id] = convertedRect.size.width
+        time2[tracked_id] = CACurrentMediaTime()
+        
+        guard let t1 = time1[tracked_id] else { return }
+        guard let t2 = time2[tracked_id] else { return }
+        let delta_t = t2 - t1
+        
+        if width1[tracked_id] != width2[tracked_id] && width1[tracked_id] != 0 {
+            guard let w1 = width1[tracked_id] else { return }
+            guard let w2 = width2[tracked_id] else { return }
+            let t = momentary_ttc(w1: w1, w2: w2, time: delta_t)
+            t_m2[tracked_id] = t
+            
+            if t_m1[tracked_id] != nil && t_m2[tracked_id] != nil {
+                guard let tm1 = t_m1[tracked_id] else { return }
+                guard let tm2 = t_m2[tracked_id] else { return }
+                let C = ((tm2 - tm1) / delta_t) + 1.0
+                if C < 0 {
+//                    t_a = acceleration_ttc(tm1: tm1, tm2: tm2, time: delta_t, C: C)
+                    t_a[tracked_id] = acceleration_ttc(tm1: tm1, tm2: tm2, time: delta_t, C: C)
+                    guard let ttc_val = t_a[tracked_id] else { return }
+                    if ttc_val > 0.0 {
+                        print(ttc_val)
+                    }
+                }
+            }
+            
+            // Update values
+            width1[tracked_id] = width2[tracked_id]
+            time1[tracked_id] = time2[tracked_id]
+            if t_m2[tracked_id] != nil {
+                t_m1[tracked_id] = t_m2[tracked_id]
+            }
+        }
+        
+        if t_a[tracked_id] == nil {
+            t_a[tracked_id] = 100.0
+        }
+//        }
+    }
 
   func show(predictions: [YOLO.Prediction]) {
     for i in 0..<boundingBoxes.count {
@@ -249,7 +301,8 @@ class ViewController: UIViewController {
 
         let delta_x_obj = convertedRect.origin.x + 0.5 * convertedRect.size.width
         let delta_y_obj = convertedRect.origin.y + 0.5 * convertedRect.size.height
-
+        
+        // Find matching tracked car
         for (tracked_id, observation) in self.lastObservation {
             let bb = observation.boundingBox
 
@@ -264,69 +317,53 @@ class ViewController: UIViewController {
                 delta_x_t <= (convertedRect.origin.x + convertedRect.size.width) &&
                 convertedRect.origin.y <= delta_y_t &&
                 delta_y_t <= (convertedRect.origin.y + convertedRect.size.height)) {
-                // Matching object already exists
+                
                 matchCarID = tracked_id
             }
         }
         
         // TODO: delete objects that leave
 
+        // If match does not exist, create new tracking object
         if matchCarID == nil {
-            // TODO: implement desired width and height?
-            //                    if (rect.origin.x + rect.size.width < desired_w / 2) &&
-            //                        (rect.origin.y < (desired_h / 4)) {
-
             // Create tracking object
             let newObservation = VNDetectedObjectObservation(boundingBox: convertedRect)
             self.lastObservation[newObservation.uuid] = newObservation
 
             // Index widths and times
+            // width1 should be an average of the previous 5-10 frames
+            // Before adding to the dictionary, accumulate average
             width1[newObservation.uuid] = convertedRect.size.width
             time1[newObservation.uuid] = CACurrentMediaTime()
-            //                    }
+            
+            matchCarID = newObservation.uuid
         }
         
-        var t_a = 0.0
+        guard let tracked_id = matchCarID else { return }
+        previous2[tracked_id]?.append(convertedRect.size.width)
         
-        for (tracked_id, _) in self.lastObservation {
+        if previous2[tracked_id]?.count == 5 {
+            // TODO: find average function
+            width2[tracked_id] = average(previous2[tracked_id])
             
-            width2[tracked_id] = convertedRect.size.width
-            time2[tracked_id] = CACurrentMediaTime()
-            
-            guard let t1 = time1[tracked_id] else { return }
-            guard let t2 = time2[tracked_id] else { return }
-            let delta_t = t2 - t1
-            
-            if width1[tracked_id] != width2[tracked_id] && width1[tracked_id] != 0 {
-                guard let w1 = width1[tracked_id] else { return }
-                guard let w2 = width2[tracked_id] else { return }
-                let t = momentary_ttc(w1: w1, w2: w2, time: delta_t)
-                t_m2[tracked_id] = t
-                
-                if t_m1[tracked_id] != nil && t_m2[tracked_id] != nil {
-                    guard let tm1 = t_m1[tracked_id] else { return }
-                    guard let tm2 = t_m2[tracked_id] else { return }
-                    let C = ((tm2 - tm1) / delta_t) + 1.0
-                    if C < 0 {
-                        t_a = acceleration_ttc(tm1: tm1, tm2: tm2, time: delta_t, C: C)
-                        if t_a > 0 {
-                            print(t_a)
-                        }
-                    }
-                }
-                
-                // Update values
+            // Handle if there is no value for width1
+            if width1[tracked_id] == nil {
                 width1[tracked_id] = width2[tracked_id]
-                time1[tracked_id] = time2[tracked_id]
-                if t_m2[tracked_id] != nil {
-                    t_m1[tracked_id] = t_m2[tracked_id]
-                }
             }
+            
+            calculateTTC(convertedRect: convertedRect, tracked_id: tracked_id)
+            
+            width1[tracked_id] = width2[tracked_id]
+            // TODO: make sure this is the correct function
+            // May also want to clear the array (to test)
+            previous2[tracked_id]?.popLast()
         }
 
         // Show the bounding box.
 //        let label = String(format: "%@ %.1f", labels[prediction.classIndex], prediction.score * 100)
-        let label = String(format: "%@ %.5f", labels[prediction.classIndex], t_a)
+        
+        guard let ttc_val = t_a[tracked_id] else { return }
+        let label = String(format: "%@ %.5f", labels[prediction.classIndex], ttc_val)
         let color = colors[prediction.classIndex]
         boundingBoxes[i].show(frame: rect, label: label, color: color)
       } else {

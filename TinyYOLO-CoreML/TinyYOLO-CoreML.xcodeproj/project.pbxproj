@@ -22,6 +22,7 @@
 		FB1B35092212722D00DB679B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1B35082212722D00DB679B /* AppDelegate.swift */; };
 		FB4624E7220F2D9900105752 /* TTC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4624E6220F2D9900105752 /* TTC.swift */; };
 		FB76DF59221271070094F6F5 /* BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB76DF58221271070094F6F5 /* BoundingBox.swift */; };
+		FBACB4B92214F92A0048F7B0 /* yolov3-tiny-obj_last.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FBACB4B82214F92A0048F7B0 /* yolov3-tiny-obj_last.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		FB1B35082212722D00DB679B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB4624E6220F2D9900105752 /* TTC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTC.swift; sourceTree = "<group>"; };
 		FB76DF58221271070094F6F5 /* BoundingBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBox.swift; sourceTree = "<group>"; };
+		FBACB4B82214F92A0048F7B0 /* yolov3-tiny-obj_last.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = "yolov3-tiny-obj_last.mlmodel"; path = "../../yolo_models/yolov3-tiny-obj_last.mlmodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				7BC25FB31EF1CEAE002ECBBA /* TinyYOLO.mlmodel */,
 				7BA1C6D11EF2827500BB25EF /* UIImage+CVPixelBuffer.swift */,
 				7BC25FB51EF27C0D002ECBBA /* VideoCapture.swift */,
+				FBACB4B82214F92A0048F7B0 /* yolov3-tiny-obj_last.mlmodel */,
 				7BC25FA31EF1B7D1002ECBBA /* ViewController.swift */,
 				FB4624E6220F2D9900105752 /* TTC.swift */,
 				7BA1C6D71EF2871600BB25EF /* YOLO.swift */,
@@ -167,6 +170,7 @@
 			files = (
 				7BA1C6D01EF27DA000BB25EF /* VideoCapture.swift in Sources */,
 				7BA1C6DA1EF2B30200BB25EF /* CVPixelBuffer+Helpers.swift in Sources */,
+				FBACB4B92214F92A0048F7B0 /* yolov3-tiny-obj_last.mlmodel in Sources */,
 				FB76DF59221271070094F6F5 /* BoundingBox.swift in Sources */,
 				7BC25FB41EF1CEB0002ECBBA /* TinyYOLO.mlmodel in Sources */,
 				FB4624E7220F2D9900105752 /* TTC.swift in Sources */,

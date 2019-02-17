@@ -18,11 +18,13 @@ class YOLO {
   }
 
   let model = TinyYOLO()
+//    let model = yolov3_tiny_obj_last_1()
 
   public init() { }
 
   public func predict(image: CVPixelBuffer) throws -> [Prediction]? {
     if let output = try? model.prediction(image: image) {
+//    if let output = try? model.prediction(input1: image) {
       return computeBoundingBoxes(features: output.grid)
     } else {
       return nil
