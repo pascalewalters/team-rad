@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3Yh-2X-Wy2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Fkh-4P-Hae">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -339,6 +339,9 @@
                                         <state key="normal" title="Start Ride">
                                             <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="XzZ-tS-G1J" kind="show" id="Tab-Gm-M7v"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -359,6 +362,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iev-cn-s81" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="230" y="690"/>
+        </scene>
+        <!--Yolo View-->
+        <scene sceneID="MNu-9f-cnR">
+            <objects>
+                <viewController id="XzZ-tS-G1J" customClass="YoloView" customModule="CycleSafeblah" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wlz-kU-QEM"/>
+                        <viewControllerLayoutGuide type="bottom" id="lr5-q5-g61"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lkm-e5-rbC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P58-IJ-85m" userLabel="Video Preview">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iyK-B5-Vtj">
+                                <rect key="frame" x="0.0" y="0.0" width="416" height="416"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NqX-ex-WJE" userLabel="Results">
+                                <rect key="frame" x="0.0" y="862" width="414" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elapsed time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pv-Uj-Hku">
+                                        <rect key="frame" x="20" y="10" width="374" height="14"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="6pv-Uj-Hku" firstAttribute="leading" secondItem="NqX-ex-WJE" secondAttribute="leading" constant="20" id="Qnl-cS-lBL"/>
+                                    <constraint firstAttribute="trailing" secondItem="6pv-Uj-Hku" secondAttribute="trailing" constant="20" id="RId-YA-E69"/>
+                                    <constraint firstItem="6pv-Uj-Hku" firstAttribute="top" secondItem="NqX-ex-WJE" secondAttribute="top" constant="10" id="UVx-W5-HOs"/>
+                                    <constraint firstAttribute="bottom" secondItem="6pv-Uj-Hku" secondAttribute="bottom" constant="10" id="l05-dG-fMN"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="NqX-ex-WJE" secondAttribute="trailing" id="Jfh-tr-H1g"/>
+                            <constraint firstItem="P58-IJ-85m" firstAttribute="top" secondItem="lkm-e5-rbC" secondAttribute="top" id="KcE-39-c3e"/>
+                            <constraint firstAttribute="trailing" secondItem="P58-IJ-85m" secondAttribute="trailing" id="NFk-PP-0vv"/>
+                            <constraint firstAttribute="bottom" secondItem="NqX-ex-WJE" secondAttribute="bottom" id="QSo-UJ-WVY"/>
+                            <constraint firstItem="P58-IJ-85m" firstAttribute="leading" secondItem="lkm-e5-rbC" secondAttribute="leading" id="aPL-7x-SwL"/>
+                            <constraint firstAttribute="bottom" secondItem="P58-IJ-85m" secondAttribute="bottom" id="gEM-In-1s5"/>
+                            <constraint firstItem="NqX-ex-WJE" firstAttribute="leading" secondItem="lkm-e5-rbC" secondAttribute="leading" id="hnL-jb-F7J"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="debugImageView" destination="iyK-B5-Vtj" id="3d9-LP-io4"/>
+                        <outlet property="timeLabel" destination="6pv-Uj-Hku" id="2hB-M0-bGY"/>
+                        <outlet property="videoPreview" destination="P58-IJ-85m" id="Pgl-ve-D3n"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7FB-J8-iff" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1906" y="690"/>
         </scene>
     </scenes>
     <resources>
