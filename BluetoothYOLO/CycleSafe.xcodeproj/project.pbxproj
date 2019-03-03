@@ -14,6 +14,7 @@
 		D5B24DE61DEE393B00D33B5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5B24DE41DEE393B00D33B5A /* LaunchScreen.storyboard */; };
 		D5B24DEE1DEE399800D33B5A /* BLECentralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B24DED1DEE399800D33B5A /* BLECentralViewController.swift */; };
 		D5B24DF11DEF153A00D33B5A /* PeripheralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B24DEF1DEF153A00D33B5A /* PeripheralTableViewCell.swift */; };
+		FB7425B3222C6BAE0015BFBB /* TTC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7425B2222C6BAE0015BFBB /* TTC.swift */; };
 		FB868922222B1D100031DDD4 /* BluetoothSendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB868921222B1D100031DDD4 /* BluetoothSendViewController.swift */; };
 		FBF4E089222B55DE004668F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBF4E088222B55DD004668F9 /* Assets.xcassets */; };
 		FBF4E08D222B5C0A004668F9 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FBF4E08C222B5C0A004668F9 /* logo.png */; };
@@ -36,6 +37,7 @@
 		D5B24DE71DEE393B00D33B5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Team Rad LED/Info.plist"; sourceTree = SOURCE_ROOT; };
 		D5B24DED1DEE399800D33B5A /* BLECentralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLECentralViewController.swift; sourceTree = "<group>"; };
 		D5B24DEF1DEF153A00D33B5A /* PeripheralTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralTableViewCell.swift; sourceTree = "<group>"; };
+		FB7425B2222C6BAE0015BFBB /* TTC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTC.swift; sourceTree = "<group>"; };
 		FB868921222B1D100031DDD4 /* BluetoothSendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothSendViewController.swift; sourceTree = "<group>"; };
 		FBF4E088222B55DD004668F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FBF4E08C222B5C0A004668F9 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				FBF4E098222B7E6D004668F9 /* yolov3-tiny-obj_last.mlmodel */,
 				FB868921222B1D100031DDD4 /* BluetoothSendViewController.swift */,
 				FBF4E090222B797B004668F9 /* YoloView.swift */,
+				FB7425B2222C6BAE0015BFBB /* TTC.swift */,
 				FBF4E092222B7BDD004668F9 /* VideoCapture.swift */,
 				FBF4E09A222B7E9F004668F9 /* Helpers.swift */,
 				FBF4E094222B7D82004668F9 /* BoundingBox.swift */,
@@ -185,6 +188,7 @@
 				FB868922222B1D100031DDD4 /* BluetoothSendViewController.swift in Sources */,
 				D50657261DF45E04002B7557 /* UartModuleViewController.swift in Sources */,
 				FBF4E09B222B7E9F004668F9 /* Helpers.swift in Sources */,
+				FB7425B3222C6BAE0015BFBB /* TTC.swift in Sources */,
 				D5B24DF11DEF153A00D33B5A /* PeripheralTableViewCell.swift in Sources */,
 				FBF4E091222B797B004668F9 /* YoloView.swift in Sources */,
 			);

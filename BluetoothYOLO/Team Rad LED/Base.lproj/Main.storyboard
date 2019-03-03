@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -248,28 +249,28 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="Eta-lJ-Oim">
-                                <rect key="frame" x="102" y="363" width="210" height="170"/>
+                                <rect key="frame" x="100" y="363" width="214" height="170"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjust Sensitivity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1P-Wy-Bvn">
-                                        <rect key="frame" x="0.0" y="0.0" width="210" height="20.333333333333332"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="214" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="PBh-B3-haJ">
-                                        <rect key="frame" x="-2" y="43.333333333333314" width="214" height="31.333333333333329"/>
+                                        <rect key="frame" x="-2" y="43.333333333333314" width="218" height="31.333333333333329"/>
                                         <connections>
                                             <action selector="sensitivityValueChanged:" destination="4TI-r5-iM4" eventType="valueChanged" id="1nA-bt-WoQ"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjust Strength" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xho-dZ-0SN">
-                                        <rect key="frame" x="0.0" y="96.666666666666686" width="210" height="20.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="96.666666666666686" width="214" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ITk-Ka-Kep">
-                                        <rect key="frame" x="-2" y="140" width="214" height="31"/>
+                                        <rect key="frame" x="-2" y="140" width="218" height="31"/>
                                         <connections>
                                             <action selector="strengthValueChanged:" destination="4TI-r5-iM4" eventType="valueChanged" id="pja-1r-kye"/>
                                         </connections>
@@ -427,7 +428,4 @@
     <resources>
         <image name="logo" width="227" height="154"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="EzP-Lp-abz"/>
-    </inferredMetricsTieBreakers>
 </document>
