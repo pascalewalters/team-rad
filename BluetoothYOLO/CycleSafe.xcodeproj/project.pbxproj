@@ -15,6 +15,7 @@
 		D5B24DEE1DEE399800D33B5A /* BLECentralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B24DED1DEE399800D33B5A /* BLECentralViewController.swift */; };
 		D5B24DF11DEF153A00D33B5A /* PeripheralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B24DEF1DEF153A00D33B5A /* PeripheralTableViewCell.swift */; };
 		FB7425B3222C6BAE0015BFBB /* TTC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7425B2222C6BAE0015BFBB /* TTC.swift */; };
+		FB7425B5222C75C50015BFBB /* bluetoothParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7425B4222C75C50015BFBB /* bluetoothParams.swift */; };
 		FB868922222B1D100031DDD4 /* BluetoothSendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB868921222B1D100031DDD4 /* BluetoothSendViewController.swift */; };
 		FBF4E089222B55DE004668F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBF4E088222B55DD004668F9 /* Assets.xcassets */; };
 		FBF4E08D222B5C0A004668F9 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FBF4E08C222B5C0A004668F9 /* logo.png */; };
@@ -38,6 +39,7 @@
 		D5B24DED1DEE399800D33B5A /* BLECentralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLECentralViewController.swift; sourceTree = "<group>"; };
 		D5B24DEF1DEF153A00D33B5A /* PeripheralTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralTableViewCell.swift; sourceTree = "<group>"; };
 		FB7425B2222C6BAE0015BFBB /* TTC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTC.swift; sourceTree = "<group>"; };
+		FB7425B4222C75C50015BFBB /* bluetoothParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bluetoothParams.swift; sourceTree = "<group>"; };
 		FB868921222B1D100031DDD4 /* BluetoothSendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothSendViewController.swift; sourceTree = "<group>"; };
 		FBF4E088222B55DD004668F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FBF4E08C222B5C0A004668F9 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				FBF4E088222B55DD004668F9 /* Assets.xcassets */,
 				FBF4E098222B7E6D004668F9 /* yolov3-tiny-obj_last.mlmodel */,
 				FB868921222B1D100031DDD4 /* BluetoothSendViewController.swift */,
+				FB7425B4222C75C50015BFBB /* bluetoothParams.swift */,
 				FBF4E090222B797B004668F9 /* YoloView.swift */,
 				FB7425B2222C6BAE0015BFBB /* TTC.swift */,
 				FBF4E092222B7BDD004668F9 /* VideoCapture.swift */,
@@ -178,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D50657241DF2F4C8002B7557 /* UUIDKey.swift in Sources */,
+				FB7425B5222C75C50015BFBB /* bluetoothParams.swift in Sources */,
 				D5B24DEE1DEE399800D33B5A /* BLECentralViewController.swift in Sources */,
 				FBF4E08F222B5DE1004668F9 /* HomeScreen.swift in Sources */,
 				FBF4E097222B7E59004668F9 /* YOLO.swift in Sources */,

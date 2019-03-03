@@ -22,12 +22,14 @@ class BluetoothSendViewController: UIViewController {
     }
     
     @IBAction func sensitivityValueChanged(_ slider: UISlider) {
-        let sensitivity = Int(slider.value * 255)
+        let sensitivity = Float(slider.value)
         print("Sensitivity: \(sensitivity)")
+        bluetoothParams.sensitivity = sensitivity
     }
     
     @IBAction func strengthValueChanged(_ slider: UISlider) {
         let strength = Int(slider.value * 255)
         print("Strength: \(strength)")
+        bluetoothParams.strength = strength
     }
 }

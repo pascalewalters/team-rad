@@ -10,8 +10,10 @@ import UIKit
 import Vision
 import AVFoundation
 import CoreMedia
+import CoreBluetooth
 
-class YoloView: UIViewController {
+class YoloView: UIViewController, CBPeripheralManagerDelegate {
+    
     @IBOutlet weak var videoPreview: UIView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var debugImageView: UIImageView!
@@ -22,6 +24,11 @@ class YoloView: UIViewController {
     
     // How many predictions we can do concurrently.
     static let maxInflightBuffers = 3
+    
+    // Bluetooth stuff
+    var peripheralManager: CBPeripheralManager?
+    var peripheral: CBPeripheral!
+    var strength: Int!
     
     let yolo = YOLO()
     
@@ -68,6 +75,9 @@ class YoloView: UIViewController {
         setUpCamera()
         
         frameCapturingStartTime = CACurrentMediaTime()
+        
+        guard let peripheral = bluetoothParams.peripheral else { print("no peripheral"); return}
+        peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
     }
     
     // MARK: - Initialization
@@ -249,6 +259,7 @@ class YoloView: UIViewController {
                         print(ttc_val)
                         
                         // Send on to bluetooth module (0-255 depending on slider value as a string)
+                        writeValue(data: bluetoothParams.strength)
                     }
                 }
             }
@@ -265,6 +276,18 @@ class YoloView: UIViewController {
             t_a[tracked_id] = 100.0
         }
     }
+    
+    func writeValue(data: Int){
+        let data = String(data)
+        print(data)
+        let valueString = (data as NSString).data(using: String.Encoding.utf8.rawValue)
+        //change the "data" to valueString
+        if let blePeripheral = blePeripheral{
+            if let txCharacteristic = txCharacteristic {
+                blePeripheral.writeValue(valueString!, for: txCharacteristic, type: CBCharacteristicWriteType.withResponse)
+            }
+        }
+    }
 
     func show(predictions: [YOLO.Prediction]) {
         for i in 0..<boundingBoxes.count {
@@ -272,7 +295,7 @@ class YoloView: UIViewController {
                 let prediction = predictions[i]
                 
                 // Set by slider (alarm sensitivity)
-                if prediction.score < 0.3 { return }
+                if prediction.score < bluetoothParams.sensitivity { return }
                 
                 // The predicted bounding box is in the coordinate space of the input
                 // image, which is a square image of 416x416 pixels. We want to show it
@@ -377,6 +400,30 @@ class YoloView: UIViewController {
             } else {
                 boundingBoxes[i].hide()
             }
+        }
+    }
+    
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+        if peripheral.state == .poweredOn {
+            return
+        }
+        print("Peripheral manager is running")
+    }
+    
+    //Check when someone subscribe to our characteristic, start sending the data
+    func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
+        print("Device subscribe to characteristic")
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    
+    func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
+        if let error = error {
+            print("\(error)")
+            return
         }
     }
 

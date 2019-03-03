@@ -160,14 +160,10 @@ class BLECentralViewController : UIViewController, CBCentralManagerDelegate, CBP
         //Once connected, move to new view controller to manager incoming and outgoing data
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-//        let uartViewController = storyboard.instantiateViewController(withIdentifier: "UartModuleViewController") as! UartModuleViewController
-//        let bluetoothViewController = storyboard.instantiateViewController(withIdentifier: "BluetoothSendViewController") as! BluetoothSendViewController
         let homeScreen = storyboard.instantiateViewController(withIdentifier: "HomeScreen") as! HomeScreen
+    
+        bluetoothParams.peripheral = peripheral
         
-//        uartViewController.peripheral = peripheral
-//        bluetoothViewController.peripheral = peripheral
-        
-//        navigationController?.pushViewController(uartViewController, animated: true)
         navigationController?.pushViewController(homeScreen, animated: true)
     }
     

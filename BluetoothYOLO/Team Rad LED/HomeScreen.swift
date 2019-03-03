@@ -7,18 +7,20 @@
 //
 
 import UIKit
+import CoreBluetooth
 
 class HomeScreen: UIViewController {
 
     @IBOutlet weak var startRideButton: UIButton!
     @IBOutlet weak var sensitivityButton: UIButton!
     
+    var peripheral: CBPeripheral!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
 
     /*
     // MARK: - Navigation

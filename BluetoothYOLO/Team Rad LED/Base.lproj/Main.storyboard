@@ -245,7 +245,7 @@
                                 </constraints>
                                 <state key="normal" title="&lt; Back"/>
                                 <connections>
-                                    <segue destination="Fkh-4P-Hae" kind="show" id="EzP-Lp-abz"/>
+                                    <segue destination="Fkh-4P-Hae" kind="show" id="Wof-b8-xIV"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="Eta-lJ-Oim">
@@ -331,7 +331,7 @@
                                             <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="4TI-r5-iM4" kind="show" id="bBe-u8-nKx"/>
+                                            <segue destination="4TI-r5-iM4" kind="show" id="vvE-Kt-LaH"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWA-Zn-OO3">
@@ -341,7 +341,7 @@
                                             <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="XzZ-tS-G1J" kind="show" id="Tab-Gm-M7v"/>
+                                            <segue destination="XzZ-tS-G1J" kind="show" id="bO9-h0-iJ7"/>
                                         </connections>
                                     </button>
                                 </subviews>
