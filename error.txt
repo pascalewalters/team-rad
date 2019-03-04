@@ -1,0 +1,1 @@
+Throws: Internal error: Exceeded maximum allowed number of Trackers for a tracker type: VNObjectTrackerType

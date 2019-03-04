@@ -17,30 +17,31 @@ class YOLO {
     let rect: CGRect
   }
 
-  let model = TinyYOLO()
-//    let model = yolov3_tiny_obj_last_1()
+//  let model = TinyYOLO()
+    let model = yolov3_tiny_obj_last_1()
 
   public init() { }
 
   public func predict(image: CVPixelBuffer) throws -> [Prediction]? {
     if let output = try? model.prediction(image: image) {
 //    if let output = try? model.prediction(input1: image) {
-      return computeBoundingBoxes(features: output.grid)
+      return computeBoundingBoxes(features: output.output1)
     } else {
       return nil
     }
   }
 
   public func computeBoundingBoxes(features: MLMultiArray) -> [Prediction] {
-    assert(features.count == 125*13*13)
+//    assert(features.count == 125*13*13)
+    assert(features.count == 21*13*13)
 
     var predictions = [Prediction]()
 
     let blockSize: Float = 32
     let gridHeight = 13
     let gridWidth = 13
-    let boxesPerCell = 5
-    let numClasses = 20
+    let boxesPerCell = 3 // Ask Josh why???????
+    let numClasses = 2
 
     // The 416x416 image is divided into a 13x13 grid. Each of these grid cells
     // will predict 5 bounding boxes (boxesPerCell). A bounding box consists of

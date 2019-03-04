@@ -223,10 +223,6 @@ class ViewController: UIViewController {
   }
     
     func calculateTTC(convertedRect: CGRect, tracked_id: UUID) {
-        // Calculate TTC for each car that is being tracked
-//        for (tracked_id, _) in self.lastObservation {
-        
-        // Get average of previous 5-10 frames
         width2[tracked_id] = convertedRect.size.width
         time2[tracked_id] = CACurrentMediaTime()
         
@@ -248,8 +244,11 @@ class ViewController: UIViewController {
 //                    t_a = acceleration_ttc(tm1: tm1, tm2: tm2, time: delta_t, C: C)
                     t_a[tracked_id] = acceleration_ttc(tm1: tm1, tm2: tm2, time: delta_t, C: C)
                     guard let ttc_val = t_a[tracked_id] else { return }
-                    if ttc_val > 0.0 {
+                    // THIS IS THE VALUE TO CHANGE
+                    if ttc_val > 0.0  && ttc_val < 3.0 {
                         print(ttc_val)
+                        
+                        // Send on to bluetooth module (0-255 depending on slider value as a string)
                     }
                 }
             }
@@ -265,13 +264,15 @@ class ViewController: UIViewController {
         if t_a[tracked_id] == nil {
             t_a[tracked_id] = 100.0
         }
-//        }
     }
 
   func show(predictions: [YOLO.Prediction]) {
     for i in 0..<boundingBoxes.count {
       if i < predictions.count {
         let prediction = predictions[i]
+        
+        // Set by slider (alarm sensitivity)
+        if prediction.score < 0.3 { return }
 
         // The predicted bounding box is in the coordinate space of the input
         // image, which is a square image of 416x416 pixels. We want to show it
@@ -340,11 +341,18 @@ class ViewController: UIViewController {
         }
         
         guard let tracked_id = matchCarID else { return }
-        previous2[tracked_id]?.append(convertedRect.size.width)
+//        previous2[tracked_id].addObject(convertedRect.size.width)
+        
+        if previous2[tracked_id] == nil {
+            previous2[tracked_id] = [convertedRect.size.width]
+        } else {
+            guard let prev2 = previous2[tracked_id] else { return }
+            previous2[tracked_id] = prev2 + [convertedRect.size.width]
+        }
         
         if previous2[tracked_id]?.count == 5 {
-            // TODO: find average function
-            width2[tracked_id] = average(previous2[tracked_id])
+            guard let prev2 = previous2[tracked_id] else { return }
+            width2[tracked_id] = average(prev2)
             
             // Handle if there is no value for width1
             if width1[tracked_id] == nil {
@@ -354,9 +362,9 @@ class ViewController: UIViewController {
             calculateTTC(convertedRect: convertedRect, tracked_id: tracked_id)
             
             width1[tracked_id] = width2[tracked_id]
-            // TODO: make sure this is the correct function
             // May also want to clear the array (to test)
-            previous2[tracked_id]?.popLast()
+//            previous2[tracked_id]?.removeLast()
+            previous2[tracked_id]? = []
         }
 
         // Show the bounding box.

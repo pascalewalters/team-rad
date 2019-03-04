@@ -4,13 +4,15 @@ import CoreML
 import Accelerate
 
 // The labels for the 20 classes.
-let labels = [
-    "aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat",
-    "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person",
-    "pottedplant", "sheep", "sofa", "train", "tvmonitor"
-]
+//let labels = [
+//    "aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat",
+//    "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person",
+//    "pottedplant", "sheep", "sofa", "train", "tvmonitor"
+//]
+let labels = ["non-vehicle", "vehicle"]
 
-let anchors: [Float] = [1.08, 1.19, 3.42, 4.41, 6.63, 11.38, 9.42, 5.11, 16.62, 10.52]
+let anchors: [Float] = [1.08, 1.19, 3.42, 4.41, 6.63, 11.38, 9.42, 5.11, 16.62, 10.52] // original
+//let anchors: [Float] = [10, 14, 23, 27, 37, 58, 81, 81, 135, 169, 344, 319] // from config
 
 /**
  Removes bounding boxes that overlap too much with other boxes that have
@@ -143,4 +145,9 @@ public func softmax(_ x: [Float]) -> [Float] {
     vDSP_vsdiv(x, 1, &sum, &x, 1, len)
     
     return x
+}
+
+
+public func average(_ x: [CGFloat]) -> CGFloat {
+    return CGFloat(x.reduce(0,+))/CGFloat(x.count)
 }
