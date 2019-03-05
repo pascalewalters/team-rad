@@ -229,7 +229,7 @@
         <!--Bluetooth Send View Controller-->
         <scene sceneID="Dy7-t2-ylC">
             <objects>
-                <viewController storyboardIdentifier="bluetoothSendViewController" id="4TI-r5-iM4" userLabel="Bluetooth Send View Controller" customClass="BluetoothSendViewController" customModule="CycleSafeblah" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="bluetoothSendViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4TI-r5-iM4" userLabel="Bluetooth Send View Controller" customClass="BluetoothSendViewController" customModule="CycleSafeblah" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YWB-Ct-O23"/>
                         <viewControllerLayoutGuide type="bottom" id="P6X-8w-436"/>
@@ -249,28 +249,28 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="Eta-lJ-Oim">
-                                <rect key="frame" x="100" y="363" width="214" height="170"/>
+                                <rect key="frame" x="94" y="363" width="226" height="170"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjust Sensitivity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1P-Wy-Bvn">
-                                        <rect key="frame" x="0.0" y="0.0" width="214" height="20.333333333333332"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="226" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="PBh-B3-haJ">
-                                        <rect key="frame" x="-2" y="43.333333333333314" width="218" height="31.333333333333329"/>
+                                        <rect key="frame" x="-2" y="43.333333333333314" width="230" height="31.333333333333329"/>
                                         <connections>
                                             <action selector="sensitivityValueChanged:" destination="4TI-r5-iM4" eventType="valueChanged" id="1nA-bt-WoQ"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjust Strength" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xho-dZ-0SN">
-                                        <rect key="frame" x="0.0" y="96.666666666666686" width="214" height="20.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="96.666666666666686" width="226" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ITk-Ka-Kep">
-                                        <rect key="frame" x="-2" y="140" width="218" height="31"/>
+                                        <rect key="frame" x="-2" y="140" width="230" height="31"/>
                                         <connections>
                                             <action selector="strengthValueChanged:" destination="4TI-r5-iM4" eventType="valueChanged" id="pja-1r-kye"/>
                                         </connections>
@@ -309,7 +309,7 @@
         <!--Home Screen-->
         <scene sceneID="62H-k2-sE2">
             <objects>
-                <viewController id="Fkh-4P-Hae" customClass="HomeScreen" customModule="CycleSafeblah" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Fkh-4P-Hae" customClass="HomeScreen" customModule="CycleSafeblah" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="93L-5L-zZf"/>
                         <viewControllerLayoutGuide type="bottom" id="gf5-pk-bRk"/>
@@ -402,9 +402,18 @@
                                     <constraint firstAttribute="bottom" secondItem="6pv-Uj-Hku" secondAttribute="bottom" constant="10" id="l05-dG-fMN"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7b-u2-9Rx">
+                                <rect key="frame" x="30" y="54" width="100" height="30"/>
+                                <state key="normal" title="Toggle Display"/>
+                                <connections>
+                                    <action selector="tapToggleDisplayButton:" destination="XzZ-tS-G1J" eventType="touchUpInside" id="CIf-0Z-6La"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="e7b-u2-9Rx" firstAttribute="leading" secondItem="lkm-e5-rbC" secondAttribute="leadingMargin" constant="10" id="63d-tA-8wY"/>
+                            <constraint firstItem="e7b-u2-9Rx" firstAttribute="top" secondItem="Wlz-kU-QEM" secondAttribute="bottom" constant="10" id="HqS-XJ-bKP"/>
                             <constraint firstAttribute="trailing" secondItem="NqX-ex-WJE" secondAttribute="trailing" id="Jfh-tr-H1g"/>
                             <constraint firstItem="P58-IJ-85m" firstAttribute="top" secondItem="lkm-e5-rbC" secondAttribute="top" id="KcE-39-c3e"/>
                             <constraint firstAttribute="trailing" secondItem="P58-IJ-85m" secondAttribute="trailing" id="NFk-PP-0vv"/>
@@ -417,6 +426,7 @@
                     <connections>
                         <outlet property="debugImageView" destination="iyK-B5-Vtj" id="3d9-LP-io4"/>
                         <outlet property="timeLabel" destination="6pv-Uj-Hku" id="2hB-M0-bGY"/>
+                        <outlet property="toggleDisplayButton" destination="e7b-u2-9Rx" id="g9G-cf-gMJ"/>
                         <outlet property="videoPreview" destination="P58-IJ-85m" id="Pgl-ve-D3n"/>
                     </connections>
                 </viewController>

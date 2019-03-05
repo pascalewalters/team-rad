@@ -18,6 +18,10 @@ class BluetoothSendViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set sliders to show the values assigned to them
+        sensitivitySlider.setValue(bluetoothParams.sensitivity, animated: true)
+        strengthSlider.setValue(Float(bluetoothParams.strength) / 255.0, animated: true)
 
     }
     

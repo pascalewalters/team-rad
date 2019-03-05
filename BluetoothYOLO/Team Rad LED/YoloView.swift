@@ -17,10 +17,9 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
     @IBOutlet weak var videoPreview: UIView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var debugImageView: UIImageView!
+    @IBOutlet weak var toggleDisplayButton: UIButton!
     
-    // Disable this to see the energy impact of just running the neural net,
-    // otherwise it also counts the GPU activity of drawing the bounding boxes.
-    let drawBoundingBoxes = true
+    var displayOn = true
     
     // How many predictions we can do concurrently.
     static let maxInflightBuffers = 3
@@ -78,6 +77,9 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
         
         guard let peripheral = bluetoothParams.peripheral else { print("no peripheral"); return}
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
+        
+        // Disable idle timer to prevent phone from going to sleep
+        UIApplication.shared.isIdleTimerDisabled = true
     }
     
     // MARK: - Initialization
@@ -156,6 +158,18 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
         }
     }
     
+    // MARK: - Toggle display
+    
+    @IBAction func tapToggleDisplayButton(_ sender: Any) {
+        if displayOn {
+            self.videoPreview.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        } else {
+            setUpCamera()
+        }
+        
+        displayOn = !displayOn
+    }
+    
     // MARK: - UI stuff
     
     override func viewWillLayoutSubviews() {
@@ -206,17 +220,15 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
     }
     
     func showOnMainThread(_ boundingBoxes: [YOLO.Prediction], _ elapsed: CFTimeInterval) {
-        if drawBoundingBoxes {
-            DispatchQueue.main.async {
-                // For debugging, to make sure the resized CVPixelBuffer is correct.
-                //var debugImage: CGImage?
-                //VTCreateCGImageFromCVPixelBuffer(resizedPixelBuffer, nil, &debugImage)
-                //self.debugImageView.image = UIImage(cgImage: debugImage!)
-                self.show(predictions: boundingBoxes)
-                
-                let fps = self.measureFPS()
-                self.timeLabel.text = String(format: "Elapsed %.5f seconds - %.2f FPS", elapsed, fps)
-            }
+        DispatchQueue.main.async {
+            // For debugging, to make sure the resized CVPixelBuffer is correct.
+            //var debugImage: CGImage?
+            //VTCreateCGImageFromCVPixelBuffer(resizedPixelBuffer, nil, &debugImage)
+            //self.debugImageView.image = UIImage(cgImage: debugImage!)
+            self.show(predictions: boundingBoxes)
+            
+            let fps = self.measureFPS()
+            self.timeLabel.text = String(format: "Elapsed %.5f seconds - %.2f FPS", elapsed, fps)
         }
     }
     
@@ -393,10 +405,12 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
                 // Show the bounding box.
                 //        let label = String(format: "%@ %.1f", labels[prediction.classIndex], prediction.score * 100)
                 
-                guard let ttc_val = t_a[tracked_id] else { return }
-                let label = String(format: "%@ %.5f", labels[prediction.classIndex], ttc_val)
-                let color = colors[prediction.classIndex]
-                boundingBoxes[i].show(frame: rect, label: label, color: color)
+                if displayOn {
+                    guard let ttc_val = t_a[tracked_id] else { return }
+                    let label = String(format: "%@ %.5f", labels[prediction.classIndex], ttc_val)
+                    let color = colors[prediction.classIndex]
+                    boundingBoxes[i].show(frame: rect, label: label, color: color)
+                }
             } else {
                 boundingBoxes[i].hide()
             }
