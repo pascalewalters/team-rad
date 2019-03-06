@@ -385,7 +385,7 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
                     previous2[tracked_id] = prev2 + [convertedRect.size.width]
                 }
                 
-                if previous2[tracked_id]?.count == 5 {
+                if previous2[tracked_id]?.count == 15 {
                     guard let prev2 = previous2[tracked_id] else { return }
                     width2[tracked_id] = average(prev2)
                     
