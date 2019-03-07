@@ -80,6 +80,17 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
         
         // Disable idle timer to prevent phone from going to sleep
         UIApplication.shared.isIdleTimerDisabled = true
+        
+        let value = UIInterfaceOrientation.landscapeLeft.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscapeLeft
+    }
+
+    override var shouldAutorotate: Bool {
+        return true
     }
     
     // MARK: - Initialization
@@ -225,10 +236,14 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
             //var debugImage: CGImage?
             //VTCreateCGImageFromCVPixelBuffer(resizedPixelBuffer, nil, &debugImage)
             //self.debugImageView.image = UIImage(cgImage: debugImage!)
-            self.show(predictions: boundingBoxes)
+            if self.framesDone % 5 == 0 {
+                self.show(predictions: boundingBoxes)
+            }
             
-            let fps = self.measureFPS()
-            self.timeLabel.text = String(format: "Elapsed %.5f seconds - %.2f FPS", elapsed, fps)
+            self.framesDone += 1
+            
+//            let fps = self.measureFPS()
+//            self.timeLabel.text = String(format: "Elapsed %.5f seconds - %.2f FPS", elapsed, fps)
         }
     }
     
@@ -385,7 +400,7 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
                     previous2[tracked_id] = prev2 + [convertedRect.size.width]
                 }
                 
-                if previous2[tracked_id]?.count == 15 {
+//                if previous2[tracked_id]?.count == 15 {
                     guard let prev2 = previous2[tracked_id] else { return }
                     width2[tracked_id] = average(prev2)
                     
@@ -400,7 +415,7 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
                     // May also want to clear the array (to test)
                     //            previous2[tracked_id]?.removeLast()
                     previous2[tracked_id]? = []
-                }
+//                }
                 
                 // Show the bounding box.
                 //        let label = String(format: "%@ %.1f", labels[prediction.classIndex], prediction.score * 100)
@@ -528,4 +543,5 @@ extension YoloView: VideoCaptureDelegate {
     }
     
 }
+
 

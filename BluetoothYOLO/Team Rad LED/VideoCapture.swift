@@ -20,6 +20,7 @@ public class VideoCapture: NSObject {
     public var desiredFrameRate = 30
     
     let captureSession = AVCaptureSession()
+//    captureSession.AVCaptureVideoOrientation = AVCaptureVideoOrientationLandscapeRight
     let videoOutput = AVCaptureVideoDataOutput()
     let queue = DispatchQueue(label: "team-rad-queue")
     
@@ -53,7 +54,8 @@ public class VideoCapture: NSObject {
         
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspect
-        previewLayer.connection?.videoOrientation = .portrait
+//        previewLayer.connection?.videoOrientation = .portrait
+        previewLayer.connection?.videoOrientation = .landscapeLeft
         self.previewLayer = previewLayer
         
         let settings: [String : Any] = [
@@ -69,7 +71,8 @@ public class VideoCapture: NSObject {
         
         // We want the buffers to be in portrait orientation otherwise they are
         // rotated by 90 degrees. Need to set this _after_ addOutput()!
-        videoOutput.connection(with: AVMediaType.video)?.videoOrientation = .portrait
+//        videoOutput.connection(with: AVMediaType.video)?.videoOrientation = .portrait
+        videoOutput.connection(with: AVMediaType.video)?.videoOrientation = .landscapeLeft
         
         // Based on code from https://github.com/dokun1/Lumina/
         let activeDimensions = CMVideoFormatDescriptionGetDimensions(captureDevice.activeFormat.formatDescription)
