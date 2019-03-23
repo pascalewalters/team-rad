@@ -62,10 +62,10 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
     
     private var previous1: [UUID: [CGFloat]] = [:]
     private var previous2: [UUID: [CGFloat]] = [:]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         timeLabel.text = ""
         
         setUpBoundingBoxes()
@@ -81,17 +81,17 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
         // Disable idle timer to prevent phone from going to sleep
         UIApplication.shared.isIdleTimerDisabled = true
         
-        let value = UIInterfaceOrientation.landscapeLeft.rawValue
-        UIDevice.current.setValue(value, forKey: "orientation")
+        //        let value = UIInterfaceOrientation.landscapeLeft.rawValue
+        //        UIDevice.current.setValue(value, forKey: "orientation")
     }
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .landscapeLeft
-    }
-
-    override var shouldAutorotate: Bool {
-        return true
-    }
+    //    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    //        return .landscapeLeft
+    //    }
+    
+    //    override var shouldAutorotate: Bool {
+    //        return true
+    //    }
     
     // MARK: - Initialization
     
@@ -191,7 +191,7 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
+    
     func resizePreviewLayer() {
         videoCapture.previewLayer?.frame = videoPreview.bounds
     }
@@ -219,15 +219,17 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
     func visionRequestDidComplete(request: VNRequest, error: Error?) {
         if let observations = request.results as? [VNCoreMLFeatureValueObservation],
             let features = observations.first?.featureValue.multiArrayValue {
-            
-            let boundingBoxes = yolo.computeBoundingBoxes(features: features)
-            let elapsed = CACurrentMediaTime() - startTimes.remove(at: 0)
-            showOnMainThread(boundingBoxes, elapsed)
+            if self.framesDone % 3 == 0 {
+                let boundingBoxes = yolo.computeBoundingBoxes(features: features)
+                let elapsed = CACurrentMediaTime() - startTimes.remove(at: 0)
+                showOnMainThread(boundingBoxes, elapsed)
+            }
         } else {
             print("BOGUS!")
         }
         
         self.semaphore.signal()
+        self.framesDone += 1
     }
     
     func showOnMainThread(_ boundingBoxes: [YOLO.Prediction], _ elapsed: CFTimeInterval) {
@@ -236,26 +238,22 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
             //var debugImage: CGImage?
             //VTCreateCGImageFromCVPixelBuffer(resizedPixelBuffer, nil, &debugImage)
             //self.debugImageView.image = UIImage(cgImage: debugImage!)
-            if self.framesDone % 5 == 0 {
-                self.show(predictions: boundingBoxes)
-            }
+            self.show(predictions: boundingBoxes)
             
-            self.framesDone += 1
-            
-//            let fps = self.measureFPS()
-//            self.timeLabel.text = String(format: "Elapsed %.5f seconds - %.2f FPS", elapsed, fps)
+            let fps = self.measureFPS()
+            self.timeLabel.text = String(format: "Elapsed %.5f seconds - %.2f FPS", elapsed, fps)
         }
     }
     
     func measureFPS() -> Double {
         // Measure how many frames were actually delivered per second.
-        framesDone += 1
+        //        framesDone += 1
         let frameCapturingElapsed = CACurrentMediaTime() - frameCapturingStartTime
         let currentFPSDelivered = Double(framesDone) / frameCapturingElapsed
-        if frameCapturingElapsed > 1 {
-            framesDone = 0
-            frameCapturingStartTime = CACurrentMediaTime()
-        }
+        //        if frameCapturingElapsed > 1 {
+        //            framesDone = 0
+        //            frameCapturingStartTime = CACurrentMediaTime()
+        //        }
         return currentFPSDelivered
     }
     
@@ -315,7 +313,7 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
             }
         }
     }
-
+    
     func show(predictions: [YOLO.Prediction]) {
         for i in 0..<boundingBoxes.count {
             if i < predictions.count {
@@ -323,6 +321,7 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
                 
                 // Set by slider (alarm sensitivity)
                 if prediction.score < bluetoothParams.sensitivity { return }
+                if labels[prediction.classIndex] != "vehicle" { return }
                 
                 // The predicted bounding box is in the coordinate space of the input
                 // image, which is a square image of 416x416 pixels. We want to show it
@@ -400,22 +399,22 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
                     previous2[tracked_id] = prev2 + [convertedRect.size.width]
                 }
                 
-//                if previous2[tracked_id]?.count == 15 {
-                    guard let prev2 = previous2[tracked_id] else { return }
-                    width2[tracked_id] = average(prev2)
-                    
-                    // Handle if there is no value for width1
-                    if width1[tracked_id] == nil {
-                        width1[tracked_id] = width2[tracked_id]
-                    }
-                    
-                    calculateTTC(convertedRect: convertedRect, tracked_id: tracked_id)
-                    
+                //                if previous2[tracked_id]?.count == 15 {
+                guard let prev2 = previous2[tracked_id] else { return }
+                width2[tracked_id] = average(prev2)
+                
+                // Handle if there is no value for width1
+                if width1[tracked_id] == nil {
                     width1[tracked_id] = width2[tracked_id]
-                    // May also want to clear the array (to test)
-                    //            previous2[tracked_id]?.removeLast()
-                    previous2[tracked_id]? = []
-//                }
+                }
+                
+                calculateTTC(convertedRect: convertedRect, tracked_id: tracked_id)
+                
+                width1[tracked_id] = width2[tracked_id]
+                // May also want to clear the array (to test)
+                //            previous2[tracked_id]?.removeLast()
+                previous2[tracked_id]? = []
+                //                }
                 
                 // Show the bounding box.
                 //        let label = String(format: "%@ %.1f", labels[prediction.classIndex], prediction.score * 100)
@@ -455,7 +454,7 @@ class YoloView: UIViewController, CBPeripheralManagerDelegate {
             return
         }
     }
-
+    
 }
 
 extension YoloView: VideoCaptureDelegate {
@@ -543,5 +542,3 @@ extension YoloView: VideoCaptureDelegate {
     }
     
 }
-
-

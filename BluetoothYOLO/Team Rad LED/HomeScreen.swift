@@ -13,6 +13,7 @@ class HomeScreen: UIViewController {
 
     @IBOutlet weak var startRideButton: UIButton!
     @IBOutlet weak var sensitivityButton: UIButton!
+    @IBOutlet weak var pairButton: UIButton!
     
     var peripheral: CBPeripheral!
     
@@ -20,16 +21,30 @@ class HomeScreen: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        startRideButton.layer.cornerRadius = 8
+        startRideButton.clipsToBounds = true
+        startRideButton.widthAnchor.constraint(equalToConstant: 175.0).isActive = true
+        
+        sensitivityButton.layer.cornerRadius = 8
+        sensitivityButton.clipsToBounds = true
+        sensitivityButton.widthAnchor.constraint(equalToConstant: 175.0).isActive = true
+        
+        pairButton.layer.cornerRadius = 8
+        pairButton.clipsToBounds = true
+        pairButton.widthAnchor.constraint(equalToConstant: 175.0).isActive = true
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func clickStartRide(_ sender: Any) {
+        if bluetoothParams.peripheral == nil {
+            let unpairedWarningController = UIAlertController(title: "Warning", message: "You need to pair your device.", preferredStyle: .alert)
+            unpairedWarningController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+            
+            self.present(unpairedWarningController, animated: true, completion: nil)
+        } else {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let yoloViewController = storyBoard.instantiateViewController(withIdentifier: "YoloView")
+            
+            self.present(yoloViewController, animated: true, completion: nil)
+        }
     }
-    */
-
 }
