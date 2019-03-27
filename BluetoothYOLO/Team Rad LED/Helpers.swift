@@ -19,7 +19,8 @@ import Accelerate
 //]
 let labels = ["non-vehicle", "vehicle"]
 
-let anchors: [Float] = [1.08, 1.19, 3.42, 4.41, 6.63, 11.38, 9.42, 5.11, 16.62, 10.52] // original
+//let anchors: [Float] = [1.08, 1.19, 3.42, 4.41, 6.63, 11.38, 9.42, 5.11, 16.62, 10.52] // original
+let anchors: [Float] = [1.19, 1.08, 4.41, 3.42, 11.38, 6.63, 5.11, 9.42, 10.52, 16.62] // original
 //let anchors: [Float] = [10, 14, 23, 27, 37, 58, 81, 81, 135, 169, 344, 319] // from config
 
 /**
